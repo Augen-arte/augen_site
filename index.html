@@ -116,7 +116,7 @@ button:hover,
     background-color: var(--secondary-color);
     padding: 0.8rem 0;
     text-align: center;
-    flex-shrink: 0; /* Não encolhe */
+    flex-shrink: 0;
 }
 .logo-section img {
     width: 173px;
@@ -124,7 +124,7 @@ button:hover,
     margin: 0 auto;
 }
 .tagline {
-    color: var(--white);
+    color: white;
     font-family: Montserrat, sans-serif;
     font-size: clamp(0.9rem, 1.8vw, 1rem);
     margin: 0.3rem auto 0;
@@ -134,10 +134,6 @@ button:hover,
     display: inline-block;
     padding: 0.1rem 0.3rem;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5), -1px -1px 2px rgba(0, 0, 0, 0.5);
-}
-.tagline {
-    color: white;
-    text-shadow: none;
     -webkit-text-stroke: 0;
     text-stroke: 0;
 }
@@ -153,14 +149,33 @@ main {
 .maintenance-message {
     display: flex;
     flex-direction: column;
-    justify-content: center; /* CENTRALIZA VERTICALMENTE DENTRO DO MAIN */
+    justify-content: center;
     align-items: center;
     text-align: center;
     padding: 0.5rem 1rem;
     max-width: 800px;
     width: 100%;
     margin: 0 auto;
-    height: 100%; /* OCUPA TODA ALTURA DISPONÍVEL */
+    height: 100%;
+    position: relative;
+}
+/* HOVER PADRÃO DO SITE PARA O BLOCO CENTRAL */
+.maintenance-message:hover {
+    outline: 2px solid #000 !important;
+    outline-offset: 2px !important;
+    border-radius: 0 !important;
+}
+.maintenance-message:focus-within {
+    outline: 3px solid #000 !important;
+    outline-offset: 2px !important;
+    border-radius: 2px !important;
+}
+/* REMOVER HOVER DAS FRASES */
+.maintenance-message .page-title:hover,
+.maintenance-message .page-title:focus,
+.maintenance-message p:hover,
+.maintenance-message p:focus {
+    outline: none !important;
 }
 .maintenance-message .page-title {
     font-size: 1.8rem;
@@ -180,7 +195,7 @@ footer {
     padding: 1.5rem 1rem;
     text-align: center;
     font-size: 0.8rem;
-    flex-shrink: 0; /* Não encolhe */
+    flex-shrink: 0;
 }
 .footer-links {
     margin-top: 0.8rem;
@@ -343,7 +358,7 @@ footer,
 footer * {
     color: white !important;
 }
-/* MOBILE - TEXTO NO CENTRO, SEM SCROLL */
+/* MOBILE */
 @media (max-width: 768px) {
     .maintenance-message {
         padding: 0.8rem 1rem;
@@ -371,7 +386,7 @@ footer * {
         padding: 1.2rem 0.8rem;
     }
 }
-/* AJUSTE PARA TELAS BAIXAS - MANTÉM TEXTO CENTRALIZADO */
+/* TELAS BAIXAS */
 @media (max-height: 700px) {
     .logo-section {
         padding: 0.6rem 0;
@@ -433,20 +448,18 @@ footer * {
     -webkit-box-shadow: none !important;
     -moz-box-shadow: none !important;
 }
-.logo-section .tagline {
-    font-size: 18px;
-}
 </style> </head>
   <body>
     <div hidden="" lang="pt-BR"> <span>Configurações de cookies</span> </div>
-    <a href="#main-content" class="skip-link" aria-label="Pular para conteúdo (tecla: Alt+1)"
+    <a href="#central-content" class="skip-link" aria-label="Pular para conteúdo (tecla: Alt+1)"
       id="skip-link-updated">Pular para conteúdo</a>
     <header class="logo-section">
       <img src="imagens/logo-augen-2-rgb.jpg" alt="Logo Augen Arte e Educação" width="150">
       <h1 class="tagline">Produção cultural, gestão de projetos de cultura e educação</h1>
     </header>
     <main id="main-content">
-      <div class="maintenance-message">
+      <!-- AQUI: tabindex="0" PARA PODER RECEBER FOCUS -->
+      <div class="maintenance-message" id="central-content" tabindex="0">
         <div class="page-title" role="heading" aria-level="1">Estamos atualizando nossa página para a versão 2026</div>
         <p>Enquanto isto, fale conosco pelos contatos abaixo:</p>
       </div>
@@ -543,73 +556,16 @@ footer * {
     
     <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // 1. GERENCIAMENTO DO FLUXO DE FOCO
-    const gerenciarOrdemFoco = () => {
-        const elementosOrdemFoco = [
-            '#skip-link-updated',
-            '.nav-list a',
-            '#sobre', '#sobre a:not(.section-back-to-top)', '#sobre .section-back-to-top',
-            '#proposito', '#proposito a:not(.section-back-to-top)', '#proposito .section-back-to-top',
-            '#valores', '#valores a:not(.section-back-to-top)', '#valores .section-back-to-top',
-            '#servicos', '#servicos a:not(.section-back-to-top)', '#servicos .section-back-to-top',
-            '#portfolio', '#portfolio .portfolio-item a', '#portfolio .section-back-to-top',
-            '#blog', '#blog a:not(.section-back-to-top)', '#blog .section-back-to-top',
-            '#contato', '#contato a:not(.section-back-to-top)', '#contato .section-back-to-top',
-            '#biblioteca', '#biblioteca a:not(.section-back-to-top)', '#biblioteca .section-back-to-top',
-            '#acessibilidade', '#acessibilidade a:not(.section-back-to-top)', '#acessibilidade .section-back-to-top',
-            '#privacidade', '#privacidade a:not(.section-back-to-top)', '#privacidade .section-back-to-top',
-            'footer a:not(.back-to-top)',
-            '.social-icons a',
-            '.easter-coffee-container a',
-            '.back-to-top'
-        ];
-
-        elementosOrdemFoco.forEach(seletor => {
-            document.querySelectorAll(seletor).forEach(el => {
-                if (!el.hasAttribute('tabindex')) {
-                    el.setAttribute('tabindex', '0');
-                }
-            });
+    // 1. SKIP LINK SALTA PARA O BLOCO CENTRAL
+    const skipLink = document.getElementById('skip-link-updated');
+    if (skipLink) {
+        skipLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            const centralContent = document.getElementById('central-content');
+            // FOCUS DIRETO NO BLOCO CENTRAL
+            centralContent.focus();
         });
-    };
-
-    // 2. CONTROLE ESPECÍFICO PARA A XÍCARA
-    const configurarXicara = () => {
-        const coffeeButton = document.querySelector('.easter-coffee-container a');
-        if (coffeeButton) {
-            coffeeButton.addEventListener('keydown', (e) => {
-                if (e.key === 'Tab' && !e.shiftKey) {
-                    const todosElementos = Array.from(document.querySelectorAll(
-                        'a[href], button, input, select, textarea, [tabindex]:not([tabindex="-1"])'
-                    )).filter(el => el.tabIndex >= 0);
-
-                    const indexAtual = todosElementos.indexOf(coffeeButton);
-                    if (indexAtual !== -1 && indexAtual < todosElementos.length - 1) {
-                        e.preventDefault();
-                        todosElementos[indexAtual + 1].focus();
-                    }
-                }
-            });
-        }
-    };
-
-    // 3. CONFIGURAÇÃO DO SKIP LINK
-    const configurarSkipLink = () => {
-        const skipLink = document.getElementById('skip-link-updated');
-        if (skipLink) {
-            skipLink.addEventListener('click', (e) => {
-                e.preventDefault();
-                const main = document.querySelector('main');
-                main.setAttribute('tabindex', '-1');
-                main.focus();
-            });
-        }
-    };
-
-    // Inicializar tudo
-    gerenciarOrdemFoco();
-    configurarXicara();
-    configurarSkipLink();
+    }
 });
 </script>
   </body>
