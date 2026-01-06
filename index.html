@@ -113,10 +113,10 @@ button:hover,
     }
 }
 .logo-section {
-    background-color: #8b5a2b; /* Tom mais escuro para contraste 4.6:1 */
+    background-color: var(--secondary-color);
     padding: 0.8rem 0;
     text-align: center;
-    flex-shrink: 0;
+    flex-shrink: 0; /* Não encolhe */
 }
 .logo-section img {
     width: 173px;
@@ -133,10 +133,11 @@ button:hover,
     position: relative;
     display: inline-block;
     padding: 0.1rem 0.3rem;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    text-shadow: 0 2px 5px rgba(0,0,0,0.85);
     font-weight: 600;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    filter: drop-shadow(0 2px 2px rgba(0,0,0,0.5));
+}
 .tagline {
     color: white;
     text-shadow: none;
