@@ -113,10 +113,10 @@ button:hover,
     }
 }
 .logo-section {
-    background-color: var(--secondary-color);
+    background-color: #8b5a2b; /* Tom mais escuro para contraste 4.6:1 */
     padding: 0.8rem 0;
     text-align: center;
-    flex-shrink: 0; /* Não encolhe */
+    flex-shrink: 0;
 }
 .logo-section img {
     width: 173px;
@@ -124,7 +124,7 @@ button:hover,
     margin: 0 auto;
 }
 .tagline {
-    color: var(--white);
+    color: white;
     font-family: Montserrat, sans-serif;
     font-size: clamp(0.9rem, 1.8vw, 1rem);
     margin: 0.3rem auto 0;
@@ -133,8 +133,10 @@ button:hover,
     position: relative;
     display: inline-block;
     padding: 0.1rem 0.3rem;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5), -1px -1px 2px rgba(0, 0, 0, 0.5);
-}
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    font-weight: 600;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 .tagline {
     color: white;
     text-shadow: none;
@@ -438,101 +440,92 @@ footer * {
 }
 </style> </head>
   <body>
-    <div hidden="" lang="pt-BR"> <span>Configurações de cookies</span> </div>
+    <div hidden="" lang="pt-BR"> <span>Configurações de cookies</span>
+    </div>
     <a href="#main-content" class="skip-link" aria-label="Pular para conteúdo (tecla: Alt+1)"
+
       id="skip-link-updated">Pular para conteúdo</a>
-    <header class="logo-section">
-      <img src="imagens/logo-augen-2-rgb.jpg" alt="Logo Augen Arte e Educação" width="150">
-      <h1 class="tagline">Produção cultural, gestão de projetos de cultura e educação</h1>
+    <header class="logo-section"> <img src="imagens/logo-augen-2-rgb.jpg" alt="Logo Augen Arte e Educação"
+
+        width="150">
+      <h1 class="tagline">Produção cultural, gestão de projetos de cultura e
+        educação</h1>
     </header>
     <main id="main-content">
       <div class="maintenance-message">
-        <div class="page-title" role="heading" aria-level="1">Estamos atualizando nossa página para a versão 2026</div>
+        <div class="page-title" role="heading" aria-level="1">Estamos
+          atualizando nossa página para a versão 2026</div>
         <p>Enquanto isto, fale conosco pelos contatos abaixo:</p>
       </div>
     </main>
     <footer>
       <div style="max-width: 1200px; margin: 0 auto; padding: 0 1rem; box-sizing: border-box; overflow: hidden;">
         <div style="text-align: center; margin-bottom: 0;">
-          <p class="footer-social-text" style="margin: 0; padding: 0;">Nossas mídias sociais</p>
+          <p class="footer-social-text" style="margin: 0; padding: 0;">Nossas
+            mídias sociais</p>
           <div class="social-icons" style="margin-top: 0; margin-bottom: 0;">
-            <!-- LinkedIn -->
-            <a href="https://www.linkedin.com/company/augen-arte-e-educacao/" 
-               target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (abre em nova janela)">
-              <i class="fab fa-linkedin"></i>
-              <span class="sr-only">LinkedIn</span>
-            </a>
-            
-            <!-- Instagram -->
-            <a href="https://www.instagram.com/augen.arte/" 
-               target="_blank" rel="noopener noreferrer" aria-label="Instagram (abre em nova janela)">
-              <i class="fab fa-instagram"></i>
-              <span class="sr-only">Instagram</span>
-            </a>
-            
-            <!-- Bluesky (SVG personalizado) -->
-            <a href="https://bsky.app/profile/augen-arte.bsky.social" 
-               target="_blank" rel="noopener noreferrer" aria-label="Bluesky (abre em nova janela)">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" 
-                   height="24" style="width:1.6rem;height:1.6rem;fill:currentColor" aria-hidden="true">
+            <!-- LinkedIn --> <a href="https://www.linkedin.com/company/augen-arte-e-educacao/"
+
+              target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (abre em nova janela)">
+              <span class="sr-only">LinkedIn</span> </a>
+            <!-- Instagram --> <a href="https://www.instagram.com/augen.arte/"
+
+              target="_blank" rel="noopener noreferrer" aria-label="Instagram (abre em nova janela)">
+              <span class="sr-only">Instagram</span> </a>
+            <!-- Bluesky (SVG personalizado) --> <a href="https://bsky.app/profile/augen-arte.bsky.social"
+
+              target="_blank" rel="noopener noreferrer" aria-label="Bluesky (abre em nova janela)">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24"
+
+                height="24" style="width:1.6rem;height:1.6rem;fill:currentColor"
+
+                aria-hidden="true">
                 <path d="M111.8 62.2C170.2 105.9 233 194.7 256 242.4c23-47.6 85.8-136.4 144.2-180.2c42.1-31.6 110.3-56 110.3 21.8c0 15.5-8.9 130.5-14.1 149.2C478.2 298 412 314.6 353.1 304.5c102.9 17.5 129.1 75.5 72.5 133.5c-107.4 110.2-154.3-27.6-166.3-62.9l0 0c-1.7-4.9-2.6-7.8-3.3-7.8s-1.6 3-3.3 7.8l0 0c-12 35.3-59 173.1-166.3 62.9c-56.5-58-30.4-116 72.5-133.5C100 314.6 33.8 298 15.7 233.1C10.4 214.4 1.5 99.4 1.5 83.9c0-77.8 68.2-53.4 110.3-21.8z"></path>
-              </svg>
-              <span class="sr-only">Bluesky</span>
-            </a>
-            
-            <!-- E-mail -->
-            <a href="mailto:contato@augen.art.br" aria-label="Enviar e-mail para contato@augen.art.br">
-              <i class="fas fa-envelope"></i>
-              <span class="sr-only">E-mail</span>
-            </a>
-            
-            <!-- WhatsApp -->
-            <a href="https://api.whatsapp.com/send?phone=5511989549805" 
-               target="_blank" rel="noopener noreferrer" aria-label="WhatsApp (abre em nova janela)">
-              <i class="fab fa-whatsapp"></i>
-              <span class="sr-only">WhatsApp</span>
-            </a>
-          </div>
-          
+              </svg> <span class="sr-only">Bluesky</span> </a>
+            <!-- E-mail --> <a href="mailto:contato@augen.art.br" aria-label="Enviar e-mail para contato@augen.art.br">
+              <span class="sr-only">E-mail</span> </a>
+            <!-- WhatsApp --> <a href="https://api.whatsapp.com/send?phone=5511989549805"
+
+              target="_blank" rel="noopener noreferrer" aria-label="WhatsApp (abre em nova janela)">
+              <span class="sr-only">WhatsApp</span> </a> </div>
           <div style="text-align: center; margin-top: 0.4rem; margin-bottom: 0.4rem;">
-            <p style="margin: 0; padding-top: 0.2rem;">
-              Outros selos 
-              <a href="https://www.arteeeducacao.art.br/" target="_blank" title="Arte e educação" rel="noopener noreferrer" style="text-decoration: none; display: inline-block;">
-                <img src="imagens/logo_red.png" alt="Arte e educação" style="width: 22px; height: 22px; vertical-align: middle;">
-              </a>
-              <a href="https://www.cafenacozinha.art.br/" target="_blank" title="Café na Cozinha" rel="noopener noreferrer" style="text-decoration: none; display: inline-block;">
+            <p style="margin: 0; padding-top: 0.2rem;"> Outros selos <a href="https://www.arteeeducacao.art.br/"
+
+                target="_blank" title="Arte e educação" rel="noopener noreferrer"
+
+                style="text-decoration: none; display: inline-block;"> <img src="imagens/logo_red.png"
+
+                  alt="Arte e educação" style="width: 22px; height: 22px; vertical-align: middle;">
+              </a> <a href="https://www.cafenacozinha.art.br/" target="_blank"
+
+                title="Café na Cozinha" rel="noopener noreferrer" style="text-decoration: none; display: inline-block;">
                 <img src="imagens/logo_cnc2.png" alt="Café na Cozinha" style="width: 22px; height: 22px; vertical-align: middle;">
-              </a>
-            </p>
-            <p style="margin: 0; padding-top: 0.2rem;">
-              Fale conosco no
-              <a href="mailto:contato@augen.art.br" class="email" aria-label="Enviar e-mail para contato@augen.art.br (contato da Augen)">
-                contato@augen.art.br
-              </a>
-            </p>
-            <p style="margin: 0; padding-top: 0.2rem;">Augen Arte e Educação© 2026</p>
+              </a> </p>
+            <p style="margin: 0; padding-top: 0.2rem;"> Fale conosco no <a href="mailto:contato@augen.art.br"
+
+                class="email" aria-label="Enviar e-mail para contato@augen.art.br (contato da Augen)">
+                contato@augen.art.br </a> </p>
+            <p style="margin: 0; padding-top: 0.2rem;">Augen Arte e Educação©
+              2026</p>
             <p style="margin: 0; padding-top: 0.2rem;">São Paulo - SP - Brasil</p>
-            <p style="margin: 0; padding-top: 0.2rem;">
-              <span class="emoji">✨</span> #códigolimpoévida <span class="emoji">✨</span>
-            </p>
+            <p style="margin: 0; padding-top: 0.2rem;"> <span class="emoji">✨</span>
+              #códigolimpoévida <span class="emoji">✨</span> </p>
           </div>
         </div>
       </div>
     </footer>
-    
     <!-- EASTER EGG -->
-    <div class="easter-coffee-container">
-      <a href="https://docs.google.com/forms/d/1Rbt55YDtiJXHEKY71c8X4l7SDBy46yAHgC4CRANDStI/viewform?edit_requested=true"
-         class="easter-coffee" target="_blank" rel="noopener noreferrer nofollow"
-         aria-label="Link secreto para formulário de contato (abre em nova janela)">
+    <div class="easter-coffee-container"> <a href="https://docs.google.com/forms/d/1Rbt55YDtiJXHEKY71c8X4l7SDBy46yAHgC4CRANDStI/viewform?edit_requested=true"
+
+        class="easter-coffee" target="_blank" rel="noopener noreferrer nofollow"
+
+        aria-label="Link secreto para formulário de contato (abre em nova janela)">
         <img src="imagens/coffee44.png" alt="Xícara de café estilizada" style="width:100%; height:auto; filter: drop-shadow(0 2px 3px rgba(0,0,0,0.2))">
-      </a>
-    </div>
-    
+      </a> </div>
     <!-- VLIBRAS CORRIGIDO (NOVA VERSÃO) -->
-    <div vw class="enabled">
-      <div vw-access-button class="active"></div>
-      <div vw-plugin-wrapper>
+    <div vw="" class="enabled">
+      <div vw-access-button="" class="active"></div>
+      <div vw-plugin-wrapper="">
         <div class="vw-plugin-top-wrapper"></div>
       </div>
     </div>
@@ -540,7 +533,6 @@ footer * {
     <script>
       new window.VLibras.Widget();
     </script>
-    
     <script>
 document.addEventListener('DOMContentLoaded', function() {
     // 1. GERENCIAMENTO DO FLUXO DE FOCO
