@@ -124,7 +124,7 @@ button:hover,
     margin: 0 auto;
 }
 .tagline {
-    color: white;
+    color: var(--white);
     font-family: Montserrat, sans-serif;
     font-size: clamp(0.9rem, 1.8vw, 1rem);
     margin: 0.3rem auto 0;
@@ -133,10 +133,13 @@ button:hover,
     position: relative;
     display: inline-block;
     padding: 0.1rem 0.3rem;
-    text-shadow: 0 2px 5px rgba(0,0,0,0.85);
-    font-weight: 600;
-    -webkit-font-smoothing: antialiased;
-    filter: drop-shadow(0 2px 2px rgba(0,0,0,0.5));
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5), -1px -1px 2px rgba(0, 0, 0, 0.5);
+}
+.tagline {
+    color: white;
+    text-shadow: none;
+    -webkit-text-stroke: 0;
+    text-stroke: 0;
 }
 /* MAIN OCUPA TODO ESPAÇO DISPONÍVEL */
 main {
@@ -189,7 +192,7 @@ footer {
 .social-icons {
     display: flex;
     justify-content: center;
-    gap: 12px;
+    gap: 4px;
     margin: 0.75rem 0;
 }
 .social-icons a {
@@ -198,27 +201,39 @@ footer {
     display: inline-flex !important;
     align-items: center;
     justify-content: center;
-    width: 2rem;
-    height: 2rem;
+    width: 1.8rem;
+    height: 1.8rem;
     text-decoration: none !important;
     padding: 0;
-    transition: transform 0.2s ease !important;
+    transition: none !important;
 }
 .social-icons a:focus-visible {
-    outline: 2px solid white !important;
+    outline: 2px solid #000 !important;
     outline-offset: 2px !important;
     border-radius: 4px !important;
+    transition: none !important;
 }
 .social-icons a:hover {
-    outline: 2px solid white !important;
+    outline: 2px solid #000 !important;
     outline-offset: 2px !important;
+    border-radius: 0 !important;
     transform: scale(1.2);
+    transition: none !important;
+}
+.social-icons a:focus-visible:hover {
+    border-radius: 0 !important;
 }
 .social-icons svg {
     width: 1.6rem;
     height: 1.6rem;
     fill: currentColor;
     display: block !important;
+}
+.social-icons a[href*="bsky"] {
+    display: inline-flex !important;
+}
+.social-icons a[href^="mailto:"] {
+    text-decoration: none !important;
 }
 .footer-social-text {
     font-size: 1.25rem;
@@ -355,9 +370,6 @@ footer * {
     footer {
         padding: 1.2rem 0.8rem;
     }
-    .social-icons {
-        gap: 8px;
-    }
 }
 /* AJUSTE PARA TELAS BAIXAS - MANTÉM TEXTO CENTRALIZADO */
 @media (max-height: 700px) {
@@ -420,6 +432,9 @@ footer * {
     box-shadow: none !important;
     -webkit-box-shadow: none !important;
     -moz-box-shadow: none !important;
+}
+.logo-section .tagline {
+    font-size: 18px;
 }
 </style> </head>
   <body>
