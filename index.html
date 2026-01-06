@@ -8,6 +8,9 @@
     <title>Augen Arte e Educação</title>
     <link rel="icon" type="image/x-icon" href="fav3.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Pré-carregar VLibras -->
+    <link rel="preconnect" href="https://vlibras.gov.br">
+    <link rel="dns-prefetch" href="https://vlibras.gov.br">
     <style>
 :root {
     --primary-color: #9a621d;
@@ -24,14 +27,20 @@
     margin: 0;
     padding: 0;
 }
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--white);
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
 }
 .skip-link {
     position: absolute;
@@ -105,8 +114,9 @@ button:hover,
 }
 .logo-section {
     background-color: var(--secondary-color);
-    padding: 1rem 0;
+    padding: 0.8rem 0;
     text-align: center;
+    flex-shrink: 0; /* Não encolhe */
 }
 .logo-section img {
     width: 173px;
@@ -116,13 +126,13 @@ button:hover,
 .tagline {
     color: var(--white);
     font-family: Montserrat, sans-serif;
-    font-size: clamp(1rem, 2vw, 1.1rem);
-    margin: 0.5rem auto 0;
+    font-size: clamp(0.9rem, 1.8vw, 1rem);
+    margin: 0.3rem auto 0;
     max-width: 600px;
     line-height: 1.3;
     position: relative;
     display: inline-block;
-    padding: 0.2rem 0.5rem;
+    padding: 0.1rem 0.3rem;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5), -1px -1px 2px rgba(0, 0, 0, 0.5);
 }
 .tagline {
@@ -131,27 +141,38 @@ button:hover,
     -webkit-text-stroke: 0;
     text-stroke: 0;
 }
-/* BLOCO CENTRAL DIMINUÍDO */
-.maintenance-message {
+/* MAIN OCUPA TODO ESPAÇO DISPONÍVEL */
+main {
     flex: 1;
     display: flex;
-    flex-direction: column;
+    align-items: center;
     justify-content: center;
+    width: 100%;
+}
+/* BLOCO CENTRAL - TEXTO NO CENTRO, SEM SCROLL */
+.maintenance-message {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* CENTRALIZA VERTICALMENTE DENTRO DO MAIN */
     align-items: center;
     text-align: center;
-    padding: 2rem 1rem; /* REDUZIDO de 4rem para 2rem */
+    padding: 0.5rem 1rem;
     max-width: 800px;
+    width: 100%;
     margin: 0 auto;
-    min-height: 50vh; /* REDUZIDO de 60vh para 50vh */
+    height: 100%; /* OCUPA TODA ALTURA DISPONÍVEL */
 }
-.maintenance-message h2 {
-    font-size: 2.5rem;
+.maintenance-message .page-title {
+    font-size: 1.8rem;
     color: var(--primary-color);
-    margin-bottom: 0.75rem; /* REDUZIDO de 1rem */
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    line-height: 1.3;
 }
 .maintenance-message p {
-    font-size: 1.5rem;
-    line-height: 1.6; /* REDUZIDO de 1.8 */
+    font-size: 1.2rem;
+    line-height: 1.4;
+    margin-top: 0;
 }
 footer {
     background-color: var(--primary-color);
@@ -159,19 +180,20 @@ footer {
     padding: 1.5rem 1rem;
     text-align: center;
     font-size: 0.8rem;
+    flex-shrink: 0; /* Não encolhe */
 }
 .footer-links {
-    margin-top: 1rem;
+    margin-top: 0.8rem;
 }
 .footer-line {
     margin: 0.3rem 0;
-    line-height: 1.3;
+    line-height: 1.2;
 }
 .social-icons {
     display: flex;
     justify-content: center;
     gap: 4px;
-    margin: 0.75rem 0; /* REDUZIDO de 1.5rem para 0.75rem */
+    margin: 0.75rem 0;
 }
 .social-icons a {
     color: var(--white) !important;
@@ -179,8 +201,8 @@ footer {
     display: inline-flex !important;
     align-items: center;
     justify-content: center;
-    width: 2rem;
-    height: 2rem;
+    width: 1.8rem;
+    height: 1.8rem;
     text-decoration: none !important;
     padding: 0;
     transition: none !important;
@@ -202,8 +224,8 @@ footer {
     border-radius: 0 !important;
 }
 .social-icons svg {
-    width: 1.8rem;
-    height: 1.8rem;
+    width: 1.6rem;
+    height: 1.6rem;
     fill: currentColor;
     display: block !important;
 }
@@ -216,7 +238,7 @@ footer {
 .footer-social-text {
     font-size: 1.25rem;
     font-weight: bold;
-    margin: 0 0 0.5rem 0; /* REDUZIDO de 1rem para 0.5rem */
+    margin: 0 0 0.5rem 0;
     color: white;
     text-align: center;
 }
@@ -227,7 +249,7 @@ footer p a,
 footer .footer-line a,
 footer a[href^="mailto:"] {
     text-decoration: underline !important;
-    text-underline-offset: 3px;
+    text-underline-offset: 2px;
 }
 .footer-line span {
     color: white !important;
@@ -321,18 +343,79 @@ footer,
 footer * {
     color: white !important;
 }
+/* MOBILE - TEXTO NO CENTRO, SEM SCROLL */
 @media (max-width: 768px) {
-    .maintenance-message h2 {
-        font-size: 2rem;
+    .maintenance-message {
+        padding: 0.8rem 1rem;
+    }
+    .maintenance-message .page-title {
+        font-size: 1.5rem;
+        margin-bottom: 0.4rem;
     }
     .maintenance-message p {
-        font-size: 1.2rem;
+        font-size: 1rem;
     }
     .easter-coffee-container {
-        bottom: 85px;
-        left: 25px;
-        width: 48px;
-        height: 48px;
+        bottom: 70px;
+        left: 20px;
+        width: 42px;
+        height: 42px;
+    }
+    .logo-section img {
+        width: 130px;
+    }
+    .tagline {
+        font-size: 0.85rem;
+    }
+    footer {
+        padding: 1.2rem 0.8rem;
+    }
+}
+/* AJUSTE PARA TELAS BAIXAS - MANTÉM TEXTO CENTRALIZADO */
+@media (max-height: 700px) {
+    .logo-section {
+        padding: 0.6rem 0;
+    }
+    .maintenance-message {
+        padding: 0.4rem 1rem;
+    }
+    .maintenance-message .page-title {
+        font-size: 1.6rem;
+        margin-bottom: 0.3rem;
+    }
+    .maintenance-message p {
+        font-size: 1.1rem;
+    }
+    footer {
+        padding: 1rem 0.8rem;
+        font-size: 0.75rem;
+    }
+}
+/* TELAS MUITO BAIXAS */
+@media (max-height: 600px) {
+    .logo-section {
+        padding: 0.4rem 0;
+    }
+    .logo-section img {
+        width: 140px;
+    }
+    .tagline {
+        font-size: 0.8rem;
+        margin: 0.2rem auto 0;
+    }
+    .maintenance-message {
+        padding: 0.3rem 1rem;
+    }
+    .maintenance-message .page-title {
+        font-size: 1.4rem;
+        margin-bottom: 0.2rem;
+    }
+    .maintenance-message p {
+        font-size: 1rem;
+    }
+    footer {
+        padding: 0.8rem 0.6rem;
+        font-size: 0.7rem;
     }
 }
 @keyframes coffee-float {
@@ -351,125 +434,120 @@ footer * {
     -moz-box-shadow: none !important;
 }
 .logo-section .tagline {
-    font-size: 20px;
+    font-size: 18px;
 }
 </style> </head>
   <body>
     <div hidden="" lang="pt-BR"> <span>Configurações de cookies</span> </div>
     <a href="#main-content" class="skip-link" aria-label="Pular para conteúdo (tecla: Alt+1)"
-
       id="skip-link-updated">Pular para conteúdo</a>
-    <header class="logo-section"> <img src="imagens/logo-augen-2-rgb.jpg" alt="Logo Augen Arte e Educação"
-
-        width="173">
-      <h1 class="tagline">Produção cultural, gestão de projetos de cultura e
-        educação</h1>
+    <header class="logo-section">
+      <img src="imagens/logo-augen-2-rgb.jpg" alt="Logo Augen Arte e Educação" width="150">
+      <h1 class="tagline">Produção cultural, gestão de projetos de cultura e educação</h1>
     </header>
     <main id="main-content">
       <div class="maintenance-message">
-        <h2>Estamos atualizando nossa página para a versão 2026</h2>
+        <div class="page-title" role="heading" aria-level="1">Estamos atualizando nossa página para a versão 2026</div>
         <p>Enquanto isto, fale conosco pelos contatos abaixo:</p>
       </div>
     </main>
     <footer>
-      <!-- CONTAINER PRINCIPAL DO RODAPÉ - CORRIGIDO PARA EVITAR OVERFLOW -->
       <div style="max-width: 1200px; margin: 0 auto; padding: 0 1rem; box-sizing: border-box; overflow: hidden;">
-       <!-- LINHA 1: MÍDIAS SOCIAIS (CENTRALIZADAS) -->
-<div style="text-align: center; margin-bottom: 0;">
-  <p class="footer-social-text" style="margin: 0; padding: 0;">Nossas mídias sociais</p>
-  <div class="social-icons" style="margin-top: 0; margin-bottom: 0;">
-    <!-- LinkedIn -->
-    <a href="https://www.linkedin.com/company/augen-arte-e-educacao/" 
-       target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (abre em nova janela)">
-      <i class="fab fa-linkedin"></i>
-      <span class="sr-only">LinkedIn</span>
-    </a>
-    
-    <!-- Instagram -->
-    <a href="https://www.instagram.com/augen.arte/" 
-       target="_blank" rel="noopener noreferrer" aria-label="Instagram (abre em nova janela)">
-      <i class="fab fa-instagram"></i>
-      <span class="sr-only">Instagram</span>
-    </a>
-    
-    <!-- Bluesky (SVG personalizado) -->
-    <a href="https://bsky.app/profile/augen-arte.bsky.social" 
-       target="_blank" rel="noopener noreferrer" aria-label="Bluesky (abre em nova janela)">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" 
-           height="24" style="width:1.8rem;height:1.8rem;fill:currentColor" aria-hidden="true">
-        <path d="M111.8 62.2C170.2 105.9 233 194.7 256 242.4c23-47.6 85.8-136.4 144.2-180.2c42.1-31.6 110.3-56 110.3 21.8c0 15.5-8.9 130.5-14.1 149.2C478.2 298 412 314.6 353.1 304.5c102.9 17.5 129.1 75.5 72.5 133.5c-107.4 110.2-154.3-27.6-166.3-62.9l0 0c-1.7-4.9-2.6-7.8-3.3-7.8s-1.6 3-3.3 7.8l0 0c-12 35.3-59 173.1-166.3 62.9c-56.5-58-30.4-116 72.5-133.5C100 314.6 33.8 298 15.7 233.1C10.4 214.4 1.5 99.4 1.5 83.9c0-77.8 68.2-53.4 110.3-21.8z"></path>
-      </svg>
-      <span class="sr-only">Bluesky</span>
-    </a>
-    
-    <!-- E-mail -->
-    <a href="mailto:contato@augen.art.br" aria-label="Enviar e-mail para contato@augen.art.br">
-      <i class="fas fa-envelope"></i>
-      <span class="sr-only">E-mail</span>
-    </a>
-    
-    <!-- WhatsApp -->
-    <a href="https://api.whatsapp.com/send?phone=5511989549805" 
-       target="_blank" rel="noopener noreferrer" aria-label="WhatsApp (abre em nova janela)">
-      <i class="fab fa-whatsapp"></i>
-      <span class="sr-only">WhatsApp</span>
-    </a>
-  </div>
-          <!-- LINHA 2: CONTEÚDO CENTRALIZADO - MARGENS REDUZIDAS -->
-          <div style="text-align: center; margin-top: 0.5rem; margin-bottom: 0.5rem;">
-            <!-- REDUZIDO de 1rem para 0.5rem -->
-            <p style="margin: 0; padding-top: 0.25rem;">
-              <!-- REDUZIDO de 0.5rem para 0.25rem --> Outros selos <a href="https://www.arteeeducacao.art.br/"
-
-                target="_blank" title="Arte e educação" rel="noopener noreferrer"
-
-                style="text-decoration: none; display: inline-block;"> <img src="imagens/logo_red.png"
-
-                  alt="Arte e educação" style="width: 24px; height: 24px; vertical-align: middle;">
-              </a> <a href="https://www.cafenacozinha.art.br/" target="_blank"
-
-                title="Café na Cozinha" rel="noopener noreferrer" style="text-decoration: none; display: inline-block;">
-                <img src="imagens/logo_cnc2.png" alt="Café na Cozinha" style="width: 24px; height: 24px; vertical-align: middle;">
-              </a> </p>
-            <p style="margin: 0; padding-top: 0.25rem;">
-              <!-- ADICIONADO para manter espaçamento igual --> Fale conosco no
+        <div style="text-align: center; margin-bottom: 0;">
+          <p class="footer-social-text" style="margin: 0; padding: 0;">Nossas mídias sociais</p>
+          <div class="social-icons" style="margin-top: 0; margin-bottom: 0;">
+            <!-- LinkedIn -->
+            <a href="https://www.linkedin.com/company/augen-arte-e-educacao/" 
+               target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (abre em nova janela)">
+              <i class="fab fa-linkedin"></i>
+              <span class="sr-only">LinkedIn</span>
+            </a>
+            
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/augen.arte/" 
+               target="_blank" rel="noopener noreferrer" aria-label="Instagram (abre em nova janela)">
+              <i class="fab fa-instagram"></i>
+              <span class="sr-only">Instagram</span>
+            </a>
+            
+            <!-- Bluesky (SVG personalizado) -->
+            <a href="https://bsky.app/profile/augen-arte.bsky.social" 
+               target="_blank" rel="noopener noreferrer" aria-label="Bluesky (abre em nova janela)">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" 
+                   height="24" style="width:1.6rem;height:1.6rem;fill:currentColor" aria-hidden="true">
+                <path d="M111.8 62.2C170.2 105.9 233 194.7 256 242.4c23-47.6 85.8-136.4 144.2-180.2c42.1-31.6 110.3-56 110.3 21.8c0 15.5-8.9 130.5-14.1 149.2C478.2 298 412 314.6 353.1 304.5c102.9 17.5 129.1 75.5 72.5 133.5c-107.4 110.2-154.3-27.6-166.3-62.9l0 0c-1.7-4.9-2.6-7.8-3.3-7.8s-1.6 3-3.3 7.8l0 0c-12 35.3-59 173.1-166.3 62.9c-56.5-58-30.4-116 72.5-133.5C100 314.6 33.8 298 15.7 233.1C10.4 214.4 1.5 99.4 1.5 83.9c0-77.8 68.2-53.4 110.3-21.8z"></path>
+              </svg>
+              <span class="sr-only">Bluesky</span>
+            </a>
+            
+            <!-- E-mail -->
+            <a href="mailto:contato@augen.art.br" aria-label="Enviar e-mail para contato@augen.art.br">
+              <i class="fas fa-envelope"></i>
+              <span class="sr-only">E-mail</span>
+            </a>
+            
+            <!-- WhatsApp -->
+            <a href="https://api.whatsapp.com/send?phone=5511989549805" 
+               target="_blank" rel="noopener noreferrer" aria-label="WhatsApp (abre em nova janela)">
+              <i class="fab fa-whatsapp"></i>
+              <span class="sr-only">WhatsApp</span>
+            </a>
+          </div>
+          
+          <div style="text-align: center; margin-top: 0.4rem; margin-bottom: 0.4rem;">
+            <p style="margin: 0; padding-top: 0.2rem;">
+              Outros selos 
+              <a href="https://www.arteeeducacao.art.br/" target="_blank" title="Arte e educação" rel="noopener noreferrer" style="text-decoration: none; display: inline-block;">
+                <img src="imagens/logo_red.png" alt="Arte e educação" style="width: 22px; height: 22px; vertical-align: middle;">
+              </a>
+              <a href="https://www.cafenacozinha.art.br/" target="_blank" title="Café na Cozinha" rel="noopener noreferrer" style="text-decoration: none; display: inline-block;">
+                <img src="imagens/logo_cnc2.png" alt="Café na Cozinha" style="width: 22px; height: 22px; vertical-align: middle;">
+              </a>
+            </p>
+            <p style="margin: 0; padding-top: 0.2rem;">
+              Fale conosco no
               <a href="mailto:contato@augen.art.br" class="email" aria-label="Enviar e-mail para contato@augen.art.br (contato da Augen)">
-                contato@augen.art.br </a> </p>
-            <p style="margin: 0; padding-top: 0.25rem;">Augen Arte e Educação©
-              2026</p>
-            <p style="margin: 0; padding-top: 0.25rem;">São Paulo - SP - Brasil</p>
-            <p style="margin: 0; padding-top: 0.25rem;"> <span class="emoji">✨</span>
-              #códigolimpoévida <span class="emoji">✨</span> </p>
+                contato@augen.art.br
+              </a>
+            </p>
+            <p style="margin: 0; padding-top: 0.2rem;">Augen Arte e Educação© 2026</p>
+            <p style="margin: 0; padding-top: 0.2rem;">São Paulo - SP - Brasil</p>
+            <p style="margin: 0; padding-top: 0.2rem;">
+              <span class="emoji">✨</span> #códigolimpoévida <span class="emoji">✨</span>
+            </p>
           </div>
         </div>
       </div>
     </footer>
-    <!-- EASTER EGG (MANTIDO IGUAL) -->
-    <div class="easter-coffee-container"> <a href="https://docs.google.com/forms/d/1Rbt55YDtiJXHEKY71c8X4l7SDBy46yAHgC4CRANDStI/viewform?edit_requested=true"
-
-        class="easter-coffee" target="_blank" rel="noopener noreferrer nofollow"
-
-        aria-label="Link secreto para formulário de contato (abre em nova janela)">
+    
+    <!-- EASTER EGG -->
+    <div class="easter-coffee-container">
+      <a href="https://docs.google.com/forms/d/1Rbt55YDtiJXHEKY71c8X4l7SDBy46yAHgC4CRANDStI/viewform?edit_requested=true"
+         class="easter-coffee" target="_blank" rel="noopener noreferrer nofollow"
+         aria-label="Link secreto para formulário de contato (abre em nova janela)">
         <img src="imagens/coffee44.png" alt="Xícara de café estilizada" style="width:100%; height:auto; filter: drop-shadow(0 2px 3px rgba(0,0,0,0.2))">
-      </a> </div>
-    <!-- VLIBRAS (SEGUINDO O MODELO OFICIAL) -->
-    <div vw="" class="enabled">
-      <div vw-plugin-wrapper=""> </div>
+      </a>
+    </div>
+    
+    <!-- VLIBRAS CORRIGIDO (NOVA VERSÃO) -->
+    <div vw class="enabled">
+      <div vw-access-button class="active"></div>
+      <div vw-plugin-wrapper>
+        <div class="vw-plugin-top-wrapper"></div>
+      </div>
     </div>
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
     <script>
-    new window.VLibras.Widget('https://vlibras.gov.br/app');
-  </script>
-    <!-- FIM DO VLIBRAS -->
+      new window.VLibras.Widget();
+    </script>
+    
     <script>
 document.addEventListener('DOMContentLoaded', function() {
     // 1. GERENCIAMENTO DO FLUXO DE FOCO
     const gerenciarOrdemFoco = () => {
-        // Elementos na ordem correta de tabulação
         const elementosOrdemFoco = [
             '#skip-link-updated',
             '.nav-list a',
-            // Todas as seções e seus links
             '#sobre', '#sobre a:not(.section-back-to-top)', '#sobre .section-back-to-top',
             '#proposito', '#proposito a:not(.section-back-to-top)', '#proposito .section-back-to-top',
             '#valores', '#valores a:not(.section-back-to-top)', '#valores .section-back-to-top',
@@ -480,16 +558,12 @@ document.addEventListener('DOMContentLoaded', function() {
             '#biblioteca', '#biblioteca a:not(.section-back-to-top)', '#biblioteca .section-back-to-top',
             '#acessibilidade', '#acessibilidade a:not(.section-back-to-top)', '#acessibilidade .section-back-to-top',
             '#privacidade', '#privacidade a:not(.section-back-to-top)', '#privacidade .section-back-to-top',
-            // Rodapé
             'footer a:not(.back-to-top)',
             '.social-icons a',
-            // Xícara (easter egg) - com tratamento especial
             '.easter-coffee-container a',
-            // Botão flutuante
             '.back-to-top'
         ];
 
-        // Tornar elementos focáveis
         elementosOrdemFoco.forEach(seletor => {
             document.querySelectorAll(seletor).forEach(el => {
                 if (!el.hasAttribute('tabindex')) {
@@ -505,7 +579,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (coffeeButton) {
             coffeeButton.addEventListener('keydown', (e) => {
                 if (e.key === 'Tab' && !e.shiftKey) {
-                    // Encontra o próximo elemento focável após a xícara
                     const todosElementos = Array.from(document.querySelectorAll(
                         'a[href], button, input, select, textarea, [tabindex]:not([tabindex="-1"])'
                     )).filter(el => el.tabIndex >= 0);
@@ -526,8 +599,9 @@ document.addEventListener('DOMContentLoaded', function() {
         if (skipLink) {
             skipLink.addEventListener('click', (e) => {
                 e.preventDefault();
-                document.querySelector('main').setAttribute('tabindex', '-1');
-                document.querySelector('main').focus();
+                const main = document.querySelector('main');
+                main.setAttribute('tabindex', '-1');
+                main.focus();
             });
         }
     };
@@ -539,5 +613,4 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
   </body>
-  <!-- Fim do corpo da página --><!-- SCRIPT PRINCIPAL (com botões de voltar focáveis) -->
 </html>
